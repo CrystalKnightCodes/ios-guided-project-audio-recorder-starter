@@ -98,15 +98,21 @@ class AudioRecorderController: UIViewController {
         }
     }
     
-    /*
+    
     func prepareAudioSession() throws {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(.playAndRecord, options: [.defaultToSpeaker])
         try session.setActive(true, options: []) // can fail if on a phone call, for instance
     }
-    */
+    
     
     func play() {
+        do {
+        try prepareAudioSession()
+        } catch {
+            print("Cannot play audio: \(error)")
+        }
+        
         audioPlayer?.play()
     }
     
