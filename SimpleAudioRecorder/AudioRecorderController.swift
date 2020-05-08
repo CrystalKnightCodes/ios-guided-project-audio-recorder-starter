@@ -59,12 +59,15 @@ class AudioRecorderController: UIViewController {
         
         let elapsedTime = audioPlayer?.currentTime ?? 0
         let duration = audioPlayer?.duration ?? 0
+        let timeRemaining = duration.rounded() - elapsedTime
         
         timeElapsedLabel.text = timeIntervalFormatter.string(from: elapsedTime)
+        timeRemainingLabel.text = "-" + timeIntervalFormatter.string(from: timeRemaining)!
         
         timeSlider.minimumValue = 0
         timeSlider.maximumValue = Float(duration)
         timeSlider.value = Float(elapsedTime)
+        
     }
     
     deinit {
